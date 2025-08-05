@@ -1,11 +1,20 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/index', function () {
+    return view('index');
+});
+
+//Post Routes
+Route::post('/create-post' , [PostController::class, 'createPost']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
