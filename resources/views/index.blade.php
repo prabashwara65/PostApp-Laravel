@@ -71,5 +71,16 @@
                     <button>Create Post</button>
                 </form>
             </div>
+
+
+            <div>
+                @foreach($posts as $post)
+                <div>
+                    <h3>{{$post['id']}}</h3>
+                    {{$post['body']}}
+                    <p>published by - {{$post['user_id']}}</p>
+                </div>
+                @endforeach
+            </div>
 </body>
 </html>

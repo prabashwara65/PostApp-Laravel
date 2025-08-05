@@ -1,19 +1,25 @@
 <?php
 
+use App\Models\Post;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/index', function () {
-    return view('index');
+    //$posts = Post::all();
+    if (auth()->check()) {
+        $posts = Auth::user()->user_posts()->latest()->get();
+    }
+    return view('index', ['posts' => $posts]);
 });
 
+
 //Post Routes
-Route::post('/create-post' , [PostController::class, 'createPost']);
+Route::post('/create-post', [PostController::class, 'createPost']);
 
 
 Route::get('/dashboard', function () {
@@ -26,4 +32,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

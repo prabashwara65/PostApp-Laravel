@@ -19,5 +19,7 @@ class PostController extends Controller
         $incomingFields['user_id'] = Auth::id();
 
         Post::Create($incomingFields);
+
+        redirect('/index');
     }
 }
