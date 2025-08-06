@@ -9,13 +9,20 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
 
+    public function deletePost(Post $post)
+    {
+        if (auth()->user()->id === $post['user_id']) {
+            $post->delete();
+        }
+    }
 
-    public function putData (Post $post , Request $request){
-        if(auth()->user()->id !== $post['user_id']){
+    public function putData(Post $post, Request $request)
+    {
+        if (auth()->user()->id !== $post['user_id']) {
             return redirect('/index');
         }
 
-         $incomingFields = $request->validate([
+        $incomingFields = $request->validate([
             'title' => 'required',
             'body' => 'required'
         ]);
@@ -28,11 +35,13 @@ class PostController extends Controller
 
     }
 
-    public function editScreen(Post $post){
-        return view('edit' , ['post' => $post]);
+    public function editScreen(Post $post)
+    {
+        return view('edit', ['post' => $post]);
     }
 
-    public function createPost(Request $request){
+    public function createPost(Request $request)
+    {
         $incomingFields = $request->validate([
             'title' => 'required',
             'body' => 'required'

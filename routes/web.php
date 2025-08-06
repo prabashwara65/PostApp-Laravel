@@ -22,7 +22,7 @@ Route::get('/index', function () {
 Route::post('/create-post', [PostController::class, 'createPost']);
 Route::get('/edit-post/{post}' , [PostController::class, 'editScreen']);
 Route::put('/edit-post/{post}' , [PostController::class, 'putData']);
-
+Route::delete('/delete-post/{post}' , [PostController::class, 'deletePost']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

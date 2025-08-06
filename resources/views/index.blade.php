@@ -82,8 +82,8 @@
 
                     <p><a href="/edit-post/{{$post->id}}">Edit</a></p>
                     
-                    {{-- //delete post --}}
-                    <form action="/delete-post{{$post->id}}">
+                    {{-- delete post --}}
+                    <form action="/delete-post/{{$post->id}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button>Delete</button>
