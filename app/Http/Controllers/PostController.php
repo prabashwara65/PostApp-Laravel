@@ -9,8 +9,27 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
 
-    public function edit(Post $post){
-        return view('edit-post' , ['post' => $post]);
+
+    public function putData (Post $post , Request $request){
+        if(auth()->user()->id !== $post['user_id']){
+            return redirect('/index');
+        }
+
+         $incomingFields = $request->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        $incomingFields['title'] = strip_tags($incomingFields['title']);
+        $incomingFields['body'] = strip_tags($incomingFields['body']);
+
+        $post->update($incomingFields);
+        return redirect('/index');
+
+    }
+
+    public function editScreen(Post $post){
+        return view('edit' , ['post' => $post]);
     }
 
     public function createPost(Request $request){

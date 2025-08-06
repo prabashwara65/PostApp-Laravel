@@ -21,6 +21,8 @@ Route::get('/index', function () {
 //Post Routes
 Route::post('/create-post', [PostController::class, 'createPost']);
 Route::get('/edit-post/{post}' , [PostController::class, 'editScreen']);
+Route::put('/edit-post/{post}' , [PostController::class, 'putData']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
