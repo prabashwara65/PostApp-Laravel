@@ -8,10 +8,10 @@ use App\Http\Controllers\ProfileController;
 //Post Routes
 Route::get('/index', function () {
     
-    // if(auth()->check()) {
-    //     $posts = Auth::user()->user_posts()->latest()->get();
-    // }
-    $posts = Post::all();
+    if(auth()->check()) {
+        $posts = Auth::user()->user_posts()->latest()->get();
+    }
+    // $posts = Post::all();
     return view('index', ['posts' => $posts]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
