@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+
+    public function edit(Post $post){
+        return view('edit-post' , ['post' => $post]);
+    }
+
     public function createPost(Request $request){
         $incomingFields = $request->validate([
             'title' => 'required',

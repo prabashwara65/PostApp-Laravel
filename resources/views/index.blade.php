@@ -79,6 +79,15 @@
                     <h3>{{$post['id']}}</h3>
                     {{$post['body']}}
                     <p>published by - {{$post['user_id']}}</p>
+
+                    <p><a href="/edit-post/{{$post->id}}">Edit</a></p>
+                    
+                    {{-- //delete post --}}
+                    <form action="/delete-post{{$post->id}}">
+                        @csrf
+                        @method('DELETE')
+                        <button>Delete</button>
+                    </form>
                 </div>
                 @endforeach
             </div>

@@ -11,7 +11,7 @@ Route::get('/', function () {
 
 Route::get('/index', function () {
     //$posts = Post::all();
-    if (auth()->check()) {
+    if(auth()->check()) {
         $posts = Auth::user()->user_posts()->latest()->get();
     }
     return view('index', ['posts' => $posts]);
@@ -20,7 +20,7 @@ Route::get('/index', function () {
 
 //Post Routes
 Route::post('/create-post', [PostController::class, 'createPost']);
-
+Route::get('/edit-post/{post}' , [PostController::class, 'editScreen']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
