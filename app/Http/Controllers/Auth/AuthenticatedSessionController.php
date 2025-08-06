@@ -17,6 +17,7 @@ class AuthenticatedSessionController extends Controller
     public function create(): View
     {
         return view('auth.login');
+          //return view('index');
     }
 
     /**
@@ -28,7 +29,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('login', absolute: false));
     }
 
     /**
@@ -42,6 +43,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/index');
     }
 }

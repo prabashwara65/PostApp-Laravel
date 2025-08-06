@@ -5,12 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-
 //Post Routes
 Route::get('/index', function () {
     
@@ -19,16 +13,14 @@ Route::get('/index', function () {
     // }
     $posts = Post::all();
     return view('index', ['posts' => $posts]);
-});
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/displayForm', [PostController::class, 'displayForm']);
 Route::post('/create-post', [PostController::class, 'createPost']);
 Route::get('/edit-post/{post}' , [PostController::class, 'editScreen']);
 Route::put('/edit-post/{post}' , [PostController::class, 'putData']);
 Route::delete('/delete-post/{post}' , [PostController::class, 'deletePost']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

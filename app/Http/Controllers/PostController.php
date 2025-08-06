@@ -40,6 +40,10 @@ class PostController extends Controller
         return view('edit', ['post' => $post]);
     }
 
+    public function displayForm(){
+        return view('create');
+    }
+
     public function createPost(Request $request)
     {
         $incomingFields = $request->validate([
@@ -53,6 +57,6 @@ class PostController extends Controller
 
         Post::Create($incomingFields);
 
-        redirect('/index');
+        return redirect('/index');
     }
 }
