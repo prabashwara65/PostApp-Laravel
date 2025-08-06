@@ -76,9 +76,9 @@
             <div>
                 @foreach($posts as $post)
                 <div>
-                    <h3>{{$post['id']}}</h3>
-                    {{$post['body']}}
-                    <p>published by - {{$post['user_id']}}</p>
+                    <h3>Title- {{$post['title']}}</h3>
+                    Body - {{$post['body']}}
+                    <p>published by - {{$post->user->name}}</p>
 
                     <p><a href="/edit-post/{{$post->id}}">Edit</a></p>
                     

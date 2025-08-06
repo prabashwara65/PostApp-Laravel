@@ -9,16 +9,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', function () {
-    //$posts = Post::all();
-    if(auth()->check()) {
-        $posts = Auth::user()->user_posts()->latest()->get();
-    }
-    return view('index', ['posts' => $posts]);
-});
 
 
 //Post Routes
+Route::get('/index', function () {
+    
+    // if(auth()->check()) {
+    //     $posts = Auth::user()->user_posts()->latest()->get();
+    // }
+    $posts = Post::all();
+    return view('index', ['posts' => $posts]);
+});
+
 Route::post('/create-post', [PostController::class, 'createPost']);
 Route::get('/edit-post/{post}' , [PostController::class, 'editScreen']);
 Route::put('/edit-post/{post}' , [PostController::class, 'putData']);
