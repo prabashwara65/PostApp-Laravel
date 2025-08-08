@@ -6,7 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 
 //Post Routes
-Route::get('/index', function () {
+Route::get('/', function () {
     
     if(auth()->check()) {
         $posts = Auth::user()->user_posts()->latest()->get();
